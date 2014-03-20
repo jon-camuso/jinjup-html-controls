@@ -45,6 +45,7 @@ var jinjupHtmlControls = (function ()
 		this.tagName = tagName;
 		this.childNodes = [];
 		this.attributes = {};
+		Node.call(this, 'element');
 
 		// A void Element is an element whose content model never allows it 
 		// to have contents under any circumstances.  Void elements only have
@@ -80,7 +81,6 @@ var jinjupHtmlControls = (function ()
 			return isVoid;
 		}
 
-		Node.call(this, 'element');
 	}
 
 	Element.prototype = new tempNode();
@@ -334,6 +334,10 @@ var jinjupHtmlControls = (function ()
 	function Image(src, alt)
 	{
 		Element.call(this, 'img');
+		if(!alt)
+		{
+			alt = src;
+		}
 		this.attributes = { src: src, alt: alt };
 	}
 	Image.prototype = new tempElement();
@@ -359,6 +363,16 @@ var jinjupHtmlControls = (function ()
 	Anchor.prototype.constructor = Anchor;
 
 	return {
+		TextNode: TextNode,
+		Element: Element,
+		Head: Head,
+		Html: Html,
+		Document: Document,
+		Link: Link,
+		Script: Script,
+		Image: Image,
+		Anchor: Anchor,
+
 		createElement: function (tagName)
 		{
 			return new Element(tagName);
@@ -628,9 +642,14 @@ var jinjupHtmlControls = (function ()
 			}
 			return element;
 		},
-		iframe: function ()
+		iframe: function (src)
 		{
-			return new Element('iframe');
+			var element = new Element('iframe');
+			if(src)
+			{
+				element.attributes.src = src;
+			}
+			return element;
 		},
 		img: function (src, alt)
 		{
