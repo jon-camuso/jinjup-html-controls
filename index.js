@@ -287,9 +287,13 @@ var jinjupHtmlControls = (function ()
 		}
 	});
 
-	function Document(titleText)
+	function Document(titleText, declaration)
 	{
-		this.declaration = 'html';
+		if(!declaration)
+		{
+			declaration = 'html';
+		}
+		this.declaration = declaration;
 		this.html = new Html(titleText);
 	}
 	Object.defineProperty(Document.prototype, 'title', {
@@ -365,6 +369,7 @@ var jinjupHtmlControls = (function ()
 	return {
 		TextNode: TextNode,
 		Element: Element,
+		Title: Title,
 		Head: Head,
 		Html: Html,
 		Document: Document,
