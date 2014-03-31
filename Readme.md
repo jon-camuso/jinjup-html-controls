@@ -4,10 +4,12 @@ A JavaScript module for node.js that contains classes for programatic creation o
 
 ## Example
 
-Require jinjup HTML Controls in your Node.js application
+Require jinjup HTML Controls in your Node.js application.
 
 	var jjHtml = require('jinjup-html-controls');
 
+
+Build and HTML document and return it to the browser.
 
 ```js
 
