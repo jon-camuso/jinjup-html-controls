@@ -50,7 +50,7 @@ Subclass these to create your own custom implementations
 
 	Anchor(href, text)
 
-,,,
+```
 
 ## Methods
 
@@ -62,7 +62,7 @@ Ofcourse the standard creation methods are supported
 
 	createTextNode(text)
 
-,,,
+```
 
 Methods also exist for more semantic object creation:
 
@@ -82,7 +82,7 @@ Methods also exist for more semantic object creation:
 	article.appendChild(jjHtml.p('Paragraph one is the first paragraph of this article.')):
 	article.appendChild(jjHtml.p('Paragraph two is the second paragraph of this article.')):
 
-,,,
+```
 
 
 ## More Examples
