@@ -24,7 +24,7 @@ Require jinjup HTML Controls in your Node.js application
 
 
 Currently supported class constructors are listed below.
-Subclass these to create your own custom implementations
+Subclass these to create your own custom implementations.
 
 ```js
 
@@ -54,7 +54,7 @@ Subclass these to create your own custom implementations
 
 ## Methods
 
-Ofcourse the standard creation methods are supported 
+Of course the standard creation methods are supported.
 
 ```js
 
