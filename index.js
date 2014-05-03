@@ -1,3 +1,10 @@
+/*
+jinjup-html-controls v0.0.4
+jinjup.com 
+Copyright (c) 2013-2014 Jon Camuso <jcamuso@exechos.com>
+MIT Licensed
+*/
+
 
 var jinjupHtmlControls = (function ()
 {
@@ -289,7 +296,7 @@ var jinjupHtmlControls = (function ()
 
 	function Document(titleText, declaration)
 	{
-		if(!declaration)
+		if (!declaration)
 		{
 			declaration = 'html';
 		}
@@ -338,7 +345,7 @@ var jinjupHtmlControls = (function ()
 	function Image(src, alt)
 	{
 		Element.call(this, 'img');
-		if(!alt)
+		if (!alt)
 		{
 			alt = src;
 		}
@@ -366,6 +373,198 @@ var jinjupHtmlControls = (function ()
 	Anchor.prototype = new tempElement();
 	Anchor.prototype.constructor = Anchor;
 
+	function Input(type, name, value, disabled, readonly)
+	{
+		Element.call(this, 'input');
+		if (typeof type === 'string')
+		{
+			this.attributes.type = type;
+		}
+		if (typeof name === 'string')
+		{
+			this.attributes.name = name;
+		}
+		if (typeof value === 'string')
+		{
+			this.attributes.value = value;
+		}
+		if (typeof disabled === 'string')
+		{
+			this.attributes.disabled = disabled;
+		}
+		if (typeof readonly === 'string')
+		{
+			this.attributes.readonly = readonly;
+		}
+	}
+	Input.prototype = new tempElement();
+	Input.prototype.constructor = Input;
+
+	var tempInput = function () { };
+	tempInput.prototype = Input.prototype;
+
+	function InputButton(name, value, disabled, readonly)
+	{
+	Input.call(this, 'button', name, value, disabled, readonly);
+	}
+	InputButton.prototype = new tempInput();
+	InputButton.prototype.constructor = InputButton;
+
+	function InputCheckbox(name, value, disabled, readonly)
+	{
+	Input.call(this, 'checkbox', name, value, disabled, readonly);
+	}
+	InputCheckbox.prototype = new tempInput();
+	InputCheckbox.prototype.constructor = InputCheckbox;
+
+	function InputColor(name, value, disabled, readonly)
+	{
+	Input.call(this, 'color', name, value, disabled, readonly);
+	}
+	InputColor.prototype = new tempInput();
+	InputColor.prototype.constructor = InputColor;
+
+	function InputDate(name, value, disabled, readonly)
+	{
+	Input.call(this, 'date', name, value, disabled, readonly);
+	}
+	InputDate.prototype = new tempInput();
+	InputDate.prototype.constructor = InputDate;
+
+	function InputDatetime(name, value, disabled, readonly)
+	{
+	Input.call(this, 'datetime', name, value, disabled, readonly);
+	}
+	InputDatetime.prototype = new tempInput();
+	InputDatetime.prototype.constructor = InputDatetime;
+
+	function InputDatetimeLocal(name, value, disabled, readonly)
+	{
+	Input.call(this, 'datetime-local', name, value, disabled, readonly);
+	}
+	InputDatetimeLocal.prototype = new tempInput();
+	InputDatetimeLocal.prototype.constructor = InputDatetimeLocal;
+
+	function InputEmail(name, value, disabled, readonly)
+	{
+	Input.call(this, 'email', name, value, disabled, readonly);
+	}
+	InputEmail.prototype = new tempInput();
+	InputEmail.prototype.constructor = InputEmail;
+
+	function InputFile(name, value, disabled, readonly)
+	{
+	Input.call(this, 'file', name, value, disabled, readonly);
+	}
+	InputFile.prototype = new tempInput();
+	InputFile.prototype.constructor = InputFile;
+
+	function InputHidden(name, value, disabled, readonly)
+	{
+	Input.call(this, 'hidden', name, value, disabled, readonly);
+	}
+	InputHidden.prototype = new tempInput();
+	InputHidden.prototype.constructor = InputHidden;
+
+	function InputImage(name, value, disabled, readonly)
+	{
+	Input.call(this, 'image', name, value, disabled, readonly);
+	}
+	InputImage.prototype = new tempInput();
+	InputImage.prototype.constructor = InputImage;
+
+	function InputMonth(name, value, disabled, readonly)
+	{
+	Input.call(this, 'month', name, value, disabled, readonly);
+	}
+	InputMonth.prototype = new tempInput();
+	InputMonth.prototype.constructor = InputMonth;
+
+	function InputNumber(name, value, disabled, readonly)
+	{
+	Input.call(this, 'number', name, value, disabled, readonly);
+	}
+	InputNumber.prototype = new tempInput();
+	InputNumber.prototype.constructor = InputNumber;
+
+	function InputPassword(name, value, disabled, readonly)
+	{
+	Input.call(this, 'password', name, value, disabled, readonly);
+	}
+	InputPassword.prototype = new tempInput();
+	InputPassword.prototype.constructor = InputPassword;
+
+	function InputRadio(name, value, disabled, readonly)
+	{
+	Input.call(this, 'radio', name, value, disabled, readonly);
+	}
+	InputRadio.prototype = new tempInput();
+	InputRadio.prototype.constructor = InputRadio;
+
+	function InputRange(name, value, disabled, readonly)
+	{
+	Input.call(this, 'range', name, value, disabled, readonly);
+	}
+	InputRange.prototype = new tempInput();
+	InputRange.prototype.constructor = InputRange;
+
+	function InputReset(name, value, disabled, readonly)
+	{
+	Input.call(this, 'reset', name, value, disabled, readonly);
+	}
+	InputReset.prototype = new tempInput();
+	InputReset.prototype.constructor = InputReset;
+
+	function InputSearch(name, value, disabled, readonly)
+	{
+	Input.call(this, 'search', name, value, disabled, readonly);
+	}
+	InputSearch.prototype = new tempInput();
+	InputSearch.prototype.constructor = InputSearch;
+
+	function InputSubmit(name, value, disabled, readonly)
+	{
+	Input.call(this, 'submit', name, value, disabled, readonly);
+	}
+	InputSubmit.prototype = new tempInput();
+	InputSubmit.prototype.constructor = InputSubmit;
+
+	function InputTel(name, value, disabled, readonly)
+	{
+	Input.call(this, 'tel', name, value, disabled, readonly);
+	}
+	InputTel.prototype = new tempInput();
+	InputTel.prototype.constructor = InputTel;
+
+	function InputText(name, value, disabled, readonly)
+	{
+	Input.call(this, 'text', name, value, disabled, readonly);
+	}
+	InputText.prototype = new tempInput();
+	InputText.prototype.constructor = InputText;
+
+	function InputTime(name, value, disabled, readonly)
+	{
+	Input.call(this, 'time', name, value, disabled, readonly);
+	}
+	InputTime.prototype = new tempInput();
+	InputTime.prototype.constructor = InputTime;
+
+	function InputUrl(name, value, disabled, readonly)
+	{
+	Input.call(this, 'url', name, value, disabled, readonly);
+	}
+	InputUrl.prototype = new tempInput();
+	InputUrl.prototype.constructor = InputUrl;
+
+	function InputWeek(name, value, disabled, readonly)
+	{
+	Input.call(this, 'week', name, value, disabled, readonly);
+	}
+	InputWeek.prototype = new tempInput();
+	InputWeek.prototype.constructor = InputWeek;
+
+
 	return {
 		TextNode: TextNode,
 		Element: Element,
@@ -377,6 +576,7 @@ var jinjupHtmlControls = (function ()
 		Script: Script,
 		Image: Image,
 		Anchor: Anchor,
+		Input: Input,
 
 		createElement: function (tagName)
 		{
@@ -650,7 +850,7 @@ var jinjupHtmlControls = (function ()
 		iframe: function (src)
 		{
 			var element = new Element('iframe');
-			if(src)
+			if (src)
 			{
 				element.attributes.src = src;
 			}
@@ -660,10 +860,127 @@ var jinjupHtmlControls = (function ()
 		{
 			return new Image(src, alt);
 		},
-		input: function ()
+
+		input: function (type, name, value, disabled, readonly)
 		{
-			return new Element('input');
+			return new Input(type, name, value, disabled, readonly);
 		},
+
+		button: function (name, value, disabled, readonly)
+		{
+			return new Input('button', name, value, disabled, readonly);
+		},
+
+		checkbox: function (name, value, disabled, readonly)
+		{
+			return new Input('checkbox', name, value, disabled, readonly);
+		},
+
+		color: function (name, value, disabled, readonly)
+		{
+			return new Input('color', name, value, disabled, readonly);
+		},
+
+		date: function (name, value, disabled, readonly)
+		{
+			return new Input('date', name, value, disabled, readonly);
+		},
+
+		datetime: function (name, value, disabled, readonly)
+		{
+			return new Input('datetime', name, value, disabled, readonly);
+		},
+
+		datetimeLocal: function (name, value, disabled, readonly)
+		{
+			return new Input('datetime-local', name, value, disabled, readonly);
+		},
+
+		email: function (name, value, disabled, readonly)
+		{
+			return new Input('email', name, value, disabled, readonly);
+		},
+
+		file: function (name, value, disabled, readonly)
+		{
+			return new Input('file', name, value, disabled, readonly);
+		},
+
+		hidden: function (name, value, disabled, readonly)
+		{
+			return new Input('hidden', name, value, disabled, readonly);
+		},
+
+		image: function (name, value, disabled, readonly)
+		{
+			return new Input('image', name, value, disabled, readonly);
+		},
+
+		month: function (name, value, disabled, readonly)
+		{
+			return new Input('month', name, value, disabled, readonly);
+		},
+
+		number: function (name, value, disabled, readonly)
+		{
+			return new Input('number', name, value, disabled, readonly);
+		},
+
+		password: function (name, value, disabled, readonly)
+		{
+			return new Input('password', name, value, disabled, readonly);
+		},
+
+		radio: function (name, value, disabled, readonly)
+		{
+			return new Input('radio', name, value, disabled, readonly);
+		},
+
+		range: function (name, value, disabled, readonly)
+		{
+			return new Input('range', name, value, disabled, readonly);
+		},
+
+		reset: function (name, value, disabled, readonly)
+		{
+			return new Input('reset', name, value, disabled, readonly);
+		},
+
+		search: function (name, value, disabled, readonly)
+		{
+			return new Input('search', name, value, disabled, readonly);
+		},
+
+		submit: function (name, value, disabled, readonly)
+		{
+			return new Input('submit', name, value, disabled, readonly);
+		},
+
+		tel: function (name, value, disabled, readonly)
+		{
+			return new Input('tel', name, value, disabled, readonly);
+		},
+
+		text: function (name, value, disabled, readonly)
+		{
+			return new Input('text', name, value, disabled, readonly);
+		},
+
+		time: function (name, value, disabled, readonly)
+		{
+			return new Input('time', name, value, disabled, readonly);
+		},
+
+		url: function (name, value, disabled, readonly)
+		{
+			return new Input('url', name, value, disabled, readonly);
+		},
+
+		week: function (name, value, disabled, readonly)
+		{
+			return new Input('week', name, value, disabled, readonly);
+		},
+
 		ins: function (text)
 		{
 			var element = new Element('ins');
@@ -929,6 +1246,6 @@ var jinjupHtmlControls = (function ()
 
 } ());
 
-module.exports = jinjupHtmlControls;
 
+module.exports = jinjupHtmlControls;
 

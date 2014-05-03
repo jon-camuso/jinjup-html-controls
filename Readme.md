@@ -52,6 +52,8 @@ Subclass these to create your own custom implementations.
 
 	Anchor(href, text)
 
+	Input(type, name, value, disabled, readonly)
+
 ```
 
 ## Methods
@@ -71,6 +73,7 @@ Methods also exist for more semantic object creation:
 ```js
 
 	var div = jjHtml.div();
+	div.id = 'content';
 	div.attributes.class = 'content-div';
 
 
@@ -83,6 +86,10 @@ Methods also exist for more semantic object creation:
 	article.appendChild(jjHtml.h2('Article Title'));
 	article.appendChild(jjHtml.p('Paragraph one is the first paragraph of this article.')):
 	article.appendChild(jjHtml.p('Paragraph two is the second paragraph of this article.')):
+
+	var button = jjHtml.button('button-name', 'Click Me');
+
+	var textBox = jjHtml.text('first-name', 'Jon')
 
 ```
 

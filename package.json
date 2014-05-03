@@ -1,12 +1,37 @@
 {
   "name": "jinjup-html-controls",
-  "version": "0.0.1",
-  "description": "Module of 'classes' for programatic creation of HTML5 document, fragment and element objects that are easily convertible to HTML and JSON.",
-  "main": "index.js",
+  "description": "Module of constructors for programatic creation of HTML5 document, fragment and element objects that are easily convertible to HTML and JSON.",
+  "version": "0.0.4",
+  "author": {
+    "name": "Jon Camuso",
+    "email": "jcamuso@exechos.com"
+  },
+  "contributors": [
+    {
+      "name": "Jon Camuso",
+      "email": "jcamuso@exechos.com"
+    }
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "",
-  "author": "Jon Camuso",
-  "license": "MIT"
+  "keywords": [
+    "jinjup",
+    "framework",
+    "web",
+    "html",
+    "library",
+    "app",
+    "dom"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jon-camuso/jinjup-html-controls"
+  },
+  "main": "index",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "license": "MIT",
+  "readmeFilename": "Readme.md"
 }
