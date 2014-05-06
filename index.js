@@ -54,6 +54,21 @@ var jinjupHtmlControls = (function ()
 		this.attributes = {};
 		Node.call(this, 'element');
 
+		this.setAttribute = function(name, value)
+		{
+			if (!this.attributes)
+			{
+				this.attributes = {};
+			}
+			this.attributes[name] = value;
+		}
+		this.removeAttribute = function (name)
+		{
+			if (this.attributes)
+			{
+				delete this.attributes[name];
+			}
+		}
 		// A void Element is an element whose content model never allows it 
 		// to have contents under any circumstances.  Void elements only have
 		// a start tag; end tags must not be specified for void elements.
@@ -405,161 +420,161 @@ var jinjupHtmlControls = (function ()
 
 	function InputButton(name, value, disabled, readonly)
 	{
-	Input.call(this, 'button', name, value, disabled, readonly);
+		Input.call(this, 'button', name, value, disabled, readonly);
 	}
 	InputButton.prototype = new tempInput();
 	InputButton.prototype.constructor = InputButton;
 
 	function InputCheckbox(name, value, disabled, readonly)
 	{
-	Input.call(this, 'checkbox', name, value, disabled, readonly);
+		Input.call(this, 'checkbox', name, value, disabled, readonly);
 	}
 	InputCheckbox.prototype = new tempInput();
 	InputCheckbox.prototype.constructor = InputCheckbox;
 
 	function InputColor(name, value, disabled, readonly)
 	{
-	Input.call(this, 'color', name, value, disabled, readonly);
+		Input.call(this, 'color', name, value, disabled, readonly);
 	}
 	InputColor.prototype = new tempInput();
 	InputColor.prototype.constructor = InputColor;
 
 	function InputDate(name, value, disabled, readonly)
 	{
-	Input.call(this, 'date', name, value, disabled, readonly);
+		Input.call(this, 'date', name, value, disabled, readonly);
 	}
 	InputDate.prototype = new tempInput();
 	InputDate.prototype.constructor = InputDate;
 
 	function InputDatetime(name, value, disabled, readonly)
 	{
-	Input.call(this, 'datetime', name, value, disabled, readonly);
+		Input.call(this, 'datetime', name, value, disabled, readonly);
 	}
 	InputDatetime.prototype = new tempInput();
 	InputDatetime.prototype.constructor = InputDatetime;
 
 	function InputDatetimeLocal(name, value, disabled, readonly)
 	{
-	Input.call(this, 'datetime-local', name, value, disabled, readonly);
+		Input.call(this, 'datetime-local', name, value, disabled, readonly);
 	}
 	InputDatetimeLocal.prototype = new tempInput();
 	InputDatetimeLocal.prototype.constructor = InputDatetimeLocal;
 
 	function InputEmail(name, value, disabled, readonly)
 	{
-	Input.call(this, 'email', name, value, disabled, readonly);
+		Input.call(this, 'email', name, value, disabled, readonly);
 	}
 	InputEmail.prototype = new tempInput();
 	InputEmail.prototype.constructor = InputEmail;
 
 	function InputFile(name, value, disabled, readonly)
 	{
-	Input.call(this, 'file', name, value, disabled, readonly);
+		Input.call(this, 'file', name, value, disabled, readonly);
 	}
 	InputFile.prototype = new tempInput();
 	InputFile.prototype.constructor = InputFile;
 
 	function InputHidden(name, value, disabled, readonly)
 	{
-	Input.call(this, 'hidden', name, value, disabled, readonly);
+		Input.call(this, 'hidden', name, value, disabled, readonly);
 	}
 	InputHidden.prototype = new tempInput();
 	InputHidden.prototype.constructor = InputHidden;
 
 	function InputImage(name, value, disabled, readonly)
 	{
-	Input.call(this, 'image', name, value, disabled, readonly);
+		Input.call(this, 'image', name, value, disabled, readonly);
 	}
 	InputImage.prototype = new tempInput();
 	InputImage.prototype.constructor = InputImage;
 
 	function InputMonth(name, value, disabled, readonly)
 	{
-	Input.call(this, 'month', name, value, disabled, readonly);
+		Input.call(this, 'month', name, value, disabled, readonly);
 	}
 	InputMonth.prototype = new tempInput();
 	InputMonth.prototype.constructor = InputMonth;
 
 	function InputNumber(name, value, disabled, readonly)
 	{
-	Input.call(this, 'number', name, value, disabled, readonly);
+		Input.call(this, 'number', name, value, disabled, readonly);
 	}
 	InputNumber.prototype = new tempInput();
 	InputNumber.prototype.constructor = InputNumber;
 
 	function InputPassword(name, value, disabled, readonly)
 	{
-	Input.call(this, 'password', name, value, disabled, readonly);
+		Input.call(this, 'password', name, value, disabled, readonly);
 	}
 	InputPassword.prototype = new tempInput();
 	InputPassword.prototype.constructor = InputPassword;
 
 	function InputRadio(name, value, disabled, readonly)
 	{
-	Input.call(this, 'radio', name, value, disabled, readonly);
+		Input.call(this, 'radio', name, value, disabled, readonly);
 	}
 	InputRadio.prototype = new tempInput();
 	InputRadio.prototype.constructor = InputRadio;
 
 	function InputRange(name, value, disabled, readonly)
 	{
-	Input.call(this, 'range', name, value, disabled, readonly);
+		Input.call(this, 'range', name, value, disabled, readonly);
 	}
 	InputRange.prototype = new tempInput();
 	InputRange.prototype.constructor = InputRange;
 
 	function InputReset(name, value, disabled, readonly)
 	{
-	Input.call(this, 'reset', name, value, disabled, readonly);
+		Input.call(this, 'reset', name, value, disabled, readonly);
 	}
 	InputReset.prototype = new tempInput();
 	InputReset.prototype.constructor = InputReset;
 
 	function InputSearch(name, value, disabled, readonly)
 	{
-	Input.call(this, 'search', name, value, disabled, readonly);
+		Input.call(this, 'search', name, value, disabled, readonly);
 	}
 	InputSearch.prototype = new tempInput();
 	InputSearch.prototype.constructor = InputSearch;
 
 	function InputSubmit(name, value, disabled, readonly)
 	{
-	Input.call(this, 'submit', name, value, disabled, readonly);
+		Input.call(this, 'submit', name, value, disabled, readonly);
 	}
 	InputSubmit.prototype = new tempInput();
 	InputSubmit.prototype.constructor = InputSubmit;
 
 	function InputTel(name, value, disabled, readonly)
 	{
-	Input.call(this, 'tel', name, value, disabled, readonly);
+		Input.call(this, 'tel', name, value, disabled, readonly);
 	}
 	InputTel.prototype = new tempInput();
 	InputTel.prototype.constructor = InputTel;
 
 	function InputText(name, value, disabled, readonly)
 	{
-	Input.call(this, 'text', name, value, disabled, readonly);
+		Input.call(this, 'text', name, value, disabled, readonly);
 	}
 	InputText.prototype = new tempInput();
 	InputText.prototype.constructor = InputText;
 
 	function InputTime(name, value, disabled, readonly)
 	{
-	Input.call(this, 'time', name, value, disabled, readonly);
+		Input.call(this, 'time', name, value, disabled, readonly);
 	}
 	InputTime.prototype = new tempInput();
 	InputTime.prototype.constructor = InputTime;
 
 	function InputUrl(name, value, disabled, readonly)
 	{
-	Input.call(this, 'url', name, value, disabled, readonly);
+		Input.call(this, 'url', name, value, disabled, readonly);
 	}
 	InputUrl.prototype = new tempInput();
 	InputUrl.prototype.constructor = InputUrl;
 
 	function InputWeek(name, value, disabled, readonly)
 	{
-	Input.call(this, 'week', name, value, disabled, readonly);
+		Input.call(this, 'week', name, value, disabled, readonly);
 	}
 	InputWeek.prototype = new tempInput();
 	InputWeek.prototype.constructor = InputWeek;
@@ -578,6 +593,51 @@ var jinjupHtmlControls = (function ()
 		Anchor: Anchor,
 		Input: Input,
 
+		create: function (json)
+		{
+			var result = null;
+			var jsonObject = null;
+			if (typeof json === 'string')
+			{
+				json = JSON.parse(json);
+			}
+			if (typeof json === 'object')
+			{
+				if (json.nodeType === "element")
+				{
+					result = this.createElement(json.tagName);
+					if ('attributes' in json)
+					{
+						for (name in json.attributes)
+						{
+							result.setAttribute(name, json.attributes[name]);
+						}
+					}
+					var length = json.childNodes.length;
+					for (var index = 0; index < length; ++index)
+					{
+						var child = this.create(json.childNodes[index]);
+						result.appendChild(child);
+					}
+				}
+				if (json.nodeType === "text")
+				{
+					result = this.createTextNode(json.nodeValue);
+				}
+				else if ('html' in json)
+				{
+					var jsonDeclaration = null;
+					if ('declaration' in json)
+					{
+						jsonDeclaration = json.declaration;
+					}
+					result = this.document('', jsonDeclaration);
+					result.html = this.create(json.html);
+				}
+			}
+			return result;
+		},
+
 		createElement: function (tagName)
 		{
 			return new Element(tagName);
@@ -586,9 +646,9 @@ var jinjupHtmlControls = (function ()
 		{
 			return new TextNode(text);
 		},
-		document: function (titleText)
+		document: function (titleText, declaration)
 		{
-			return new Document(titleText);
+			return new Document(titleText, declaration);
 		},
 		a: function (href, text)
 		{
