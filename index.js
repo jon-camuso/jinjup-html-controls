@@ -54,7 +54,7 @@ var jinjupHtmlControls = (function ()
 		this.attributes = {};
 		Node.call(this, 'element');
 
-		this.setAttribute = function(name, value)
+		this.setAttribute = function (name, value)
 		{
 			if (!this.attributes)
 			{
@@ -101,6 +101,29 @@ var jinjupHtmlControls = (function ()
 					break;
 			}
 			return isVoid;
+		}
+
+		this.getElementById = function (searchId)
+		{
+			var element = null;
+			var child = null;
+			if ('id' in this && this.id === searchId)
+			{
+				element = this;
+			}
+			else if ('childNodes' in this)
+			{
+				for (var index = 0; index < this.childNodes.length; ++index)
+				{
+					child = this.childNodes[index];
+					if ('getElementById' in child
+					&& (element = child.getElementById(searchId)) != null)
+					{
+						break;
+					}
+				}
+			}
+			return element;
 		}
 
 	}
@@ -606,6 +629,7 @@ var jinjupHtmlControls = (function ()
 				if (json.nodeType === "element")
 				{
 					result = this.createElement(json.tagName);
+
 					if ('attributes' in json)
 					{
 						for (name in json.attributes)
