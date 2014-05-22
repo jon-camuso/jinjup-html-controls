@@ -54,82 +54,86 @@ var jinjupHtmlControls = (function ()
 		this.attributes = {};
 		Node.call(this, 'element');
 
-		this.setAttribute = function (name, value)
-		{
-			if (!this.attributes)
-			{
-				this.attributes = {};
-			}
-			this.attributes[name] = value;
-		}
-		this.removeAttribute = function (name)
-		{
-			if (this.attributes)
-			{
-				delete this.attributes[name];
-			}
-		}
-		// A void Element is an element whose content model never allows it 
-		// to have contents under any circumstances.  Void elements only have
-		// a start tag; end tags must not be specified for void elements.
-		//
-		this.isVoid = function ()
-		{
-			isVoid = false;
-			switch (this.tagName)
-			{
-				case 'area':
-				case 'base':
-				case 'br':
-				case 'col':
-				case 'embed':
-				case 'hr':
-				case 'img':
-				case 'input':
-				case 'keygen':
-				case 'link':
-				case 'menuitem':
-				case 'meta':
-				case 'param':
-				case 'source':
-				case 'track':
-				case 'wbr':
-					isVoid = true;
-					break;
-				default:
-					isVoid = false;
-					break;
-			}
-			return isVoid;
-		}
-
-		this.getElementById = function (searchId)
-		{
-			var element = null;
-			var child = null;
-			if ('id' in this && this.id === searchId)
-			{
-				element = this;
-			}
-			else if ('childNodes' in this)
-			{
-				for (var index = 0; index < this.childNodes.length; ++index)
-				{
-					child = this.childNodes[index];
-					if ('getElementById' in child
-					&& (element = child.getElementById(searchId)) != null)
-					{
-						break;
-					}
-				}
-			}
-			return element;
-		}
-
 	}
 
 	Element.prototype = new tempNode();
 	Element.prototype.constructor = Element;
+
+	// A void Element is an element whose content model never allows it 
+	// to have contents under any circumstances.  Void elements only have
+	// a start tag; end tags must not be specified for void elements.
+	//
+	Element.prototype.isVoid = function ()
+	{
+		isVoid = false;
+		switch (this.tagName)
+		{
+			case 'area':
+			case 'base':
+			case 'br':
+			case 'col':
+			case 'embed':
+			case 'hr':
+			case 'img':
+			case 'input':
+			case 'keygen':
+			case 'link':
+			case 'menuitem':
+			case 'meta':
+			case 'param':
+			case 'source':
+			case 'track':
+			case 'wbr':
+				isVoid = true;
+				break;
+			default:
+				isVoid = false;
+				break;
+		}
+		return isVoid;
+	}
+
+	Element.prototype.setAttribute = function (name, value)
+	{
+		if (!this.attributes)
+		{
+			this.attributes = {};
+		}
+		this.attributes[name] = value;
+	}
+	Element.prototype.removeAttribute = function (name)
+	{
+		if (this.attributes)
+		{
+			delete this.attributes[name];
+		}
+	}
+
+	Element.prototype.getElementById = function (searchId)
+	{
+		var element = null;
+		var child = null;
+
+		if ('attributes' in this
+		&& 'id' in this.attributes
+		&& this.attributes.id === searchId)
+		{
+			element = this;
+		}
+		else if ('childNodes' in this)
+		{
+			for (var index = 0; index < this.childNodes.length; ++index)
+			{
+				child = this.childNodes[index];
+				if ('getElementById' in child
+					&& (element = child.getElementById(searchId)) != null)
+				{
+					break;
+				}
+			}
+		}
+		return element;
+	}
 
 	Element.prototype.appendChild = function (child)
 	{
@@ -952,117 +956,117 @@ var jinjupHtmlControls = (function ()
 
 		button: function (name, value, disabled, readonly)
 		{
-			return new Input('button', name, value, disabled, readonly);
+			return new InputButton(name, value, disabled, readonly);
 		},
 
 		checkbox: function (name, value, disabled, readonly)
 		{
-			return new Input('checkbox', name, value, disabled, readonly);
+			return new InputCheckbox(name, value, disabled, readonly);
 		},
 
 		color: function (name, value, disabled, readonly)
 		{
-			return new Input('color', name, value, disabled, readonly);
+			return new InputColor(name, value, disabled, readonly);
 		},
 
 		date: function (name, value, disabled, readonly)
 		{
-			return new Input('date', name, value, disabled, readonly);
+			return new InputDate(name, value, disabled, readonly);
 		},
 
 		datetime: function (name, value, disabled, readonly)
 		{
-			return new Input('datetime', name, value, disabled, readonly);
+			return new InputDatetime(name, value, disabled, readonly);
 		},
 
 		datetimeLocal: function (name, value, disabled, readonly)
 		{
-			return new Input('datetime-local', name, value, disabled, readonly);
+			return new InputDatetimeLocal(name, value, disabled, readonly);
 		},
 
 		email: function (name, value, disabled, readonly)
 		{
-			return new Input('email', name, value, disabled, readonly);
+			return new InputEmail(name, value, disabled, readonly);
 		},
 
 		file: function (name, value, disabled, readonly)
 		{
-			return new Input('file', name, value, disabled, readonly);
+			return new InputFile(name, value, disabled, readonly);
 		},
 
 		hidden: function (name, value, disabled, readonly)
 		{
-			return new Input('hidden', name, value, disabled, readonly);
+			return new InputHidden(name, value, disabled, readonly);
 		},
 
 		image: function (name, value, disabled, readonly)
 		{
-			return new Input('image', name, value, disabled, readonly);
+			return new InputImage(name, value, disabled, readonly);
 		},
 
 		month: function (name, value, disabled, readonly)
 		{
-			return new Input('month', name, value, disabled, readonly);
+			return new InputMonth(name, value, disabled, readonly);
 		},
 
 		number: function (name, value, disabled, readonly)
 		{
-			return new Input('number', name, value, disabled, readonly);
+			return new InputNumber(name, value, disabled, readonly);
 		},
 
 		password: function (name, value, disabled, readonly)
 		{
-			return new Input('password', name, value, disabled, readonly);
+			return new InputPassword(name, value, disabled, readonly);
 		},
 
 		radio: function (name, value, disabled, readonly)
 		{
-			return new Input('radio', name, value, disabled, readonly);
+			return new InputRadio(name, value, disabled, readonly);
 		},
 
 		range: function (name, value, disabled, readonly)
 		{
-			return new Input('range', name, value, disabled, readonly);
+			return new InputRange(name, value, disabled, readonly);
 		},
 
 		reset: function (name, value, disabled, readonly)
 		{
-			return new Input('reset', name, value, disabled, readonly);
+			return new InputReset(name, value, disabled, readonly);
 		},
 
 		search: function (name, value, disabled, readonly)
 		{
-			return new Input('search', name, value, disabled, readonly);
+			return new InputSearch(name, value, disabled, readonly);
 		},
 
 		submit: function (name, value, disabled, readonly)
 		{
-			return new Input('submit', name, value, disabled, readonly);
+			return new InputSubmit(name, value, disabled, readonly);
 		},
 
 		tel: function (name, value, disabled, readonly)
 		{
-			return new Input('tel', name, value, disabled, readonly);
+			return new InputTel(name, value, disabled, readonly);
 		},
 
 		text: function (name, value, disabled, readonly)
 		{
-			return new Input('text', name, value, disabled, readonly);
+			return new InputText(name, value, disabled, readonly);
 		},
 
 		time: function (name, value, disabled, readonly)
 		{
-			return new Input('time', name, value, disabled, readonly);
+			return new InputTime(name, value, disabled, readonly);
 		},
 
 		url: function (name, value, disabled, readonly)
 		{
-			return new Input('url', name, value, disabled, readonly);
+			return new InputUrl(name, value, disabled, readonly);
 		},
 
 		week: function (name, value, disabled, readonly)
 		{
-			return new Input('week', name, value, disabled, readonly);
+			return new InputWeek(name, value, disabled, readonly);
 		},
 
 		ins: function (text)
