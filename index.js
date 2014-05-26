@@ -135,12 +135,94 @@ var jinjupHtmlControls = (function ()
 		return element;
 	}
 
+	Element.prototype.buildElementsByTagName = function (tagName, elements)
+	{
+		if ('childNodes' in this)
+		{
+			for (var index = 0; index < this.childNodes.length; ++index)
+			{
+				child = this.childNodes[index];
+
+				if (child instanceof Element)
+				{
+					if (child.tagName === tagName)
+					{
+						console.log('Match on ' + tagName + ' [' + index + ']');
+						elements.push(child);
+					}
+					else
+					{
+						console.log('tagName ' + tagName + ' does not match ' + child.tagName + ' [' + index + ']');
+					}
+					if (child.buildElementsByTagName)
+					{
+						child.buildElementsByTagName(tagName, elements);
+					}
+					else
+					{
+						console.log('error no buildElementsByTagName [' + index + ']');
+					}
+				}
+				else
+				{
+					console.log(' no tagName for nodeType ' + child.nodeType + ' [' + index + ']');
+				}
+			}
+		}
+	}
+
+	Element.prototype.getElementsByTagName = function (tagName)
+	{
+		var elements = [];
+		var child = null;
+
+		if (this.tagName
+		&& this.tagName === tagName)
+		{
+			elements.push(this);
+		}
+		else
+		{
+			console.log('tagName ' + tagName + ' does not match ' + this.tagName);
+		}
+
+		if (this.buildElementsByTagName)
+		{
+			this.buildElementsByTagName(tagName, elements);
+		}
+		else
+		{
+			console.log('no buildElementsByTagName');
+		}
+
+		return elements;
+	}
+
 	Element.prototype.appendChild = function (child)
 	{
 		if (child instanceof TextNode
 		|| child instanceof Element)
 		{
 			this.childNodes.push(child);
+		}
+	}
+	Element.prototype.removeChild = function (child)
+	{
+		if (this.childNodes)
+		{
+			var length = this.childNodes.length;
+
+			var item;
+			for (var index = 0; index < length; ++index)
+			{
+				item = this.childNodes[index];
+
+				if (child.outerHtml === item.outerHtml)
+				{
+					this.childNodes.splice(index, 1);
+					break;
+				}
+			}
 		}
 	}
 
@@ -354,7 +436,30 @@ var jinjupHtmlControls = (function ()
 	Object.defineProperty(Document.prototype, 'body', {
 		get: function ()
 		{
-			return this.html.body;
+			var body = null;
+			if (this.html)
+			{
+				if (this.html.body)
+				{
+					body = this.html.body;
+				}
+				/*
+				else if (this.html.getElementsByTagName)
+				{
+				console.log('found getElementsByTagName');
+
+				var elements = this.html.getElementsByTagName('body');
+
+				this.html.body = elements.length > 0 ? elements[0] : null;
+				body = this.html.body;
+				}
+				else
+				{
+				console.log('no getElementsByTagName');
+				}
+				*/
+			}
+			return body;
 		}
 	});
 
@@ -630,10 +735,26 @@ var jinjupHtmlControls = (function ()
 			}
 			if (typeof json === 'object')
 			{
-				if (json.nodeType === "element")
+				if (json.nodeType === 'element')
 				{
-					result = this.createElement(json.tagName);
-
+					if (json.tagName === 'html')
+					{
+						result = this.html('');
+						result.childNodes = [];
+					}
+					else if (json.tagName === 'head')
+					{
+						result = this.head();
+						result.childNodes = [];
+					}
+					else if (json.tagName === 'title')
+					{
+						result = this.title();
+					}
+					else
+					{
+						result = this.createElement(json.tagName);
+					}
 					if ('attributes' in json)
 					{
 						for (name in json.attributes)
@@ -926,6 +1047,10 @@ var jinjupHtmlControls = (function ()
 		{
 			return new Element('hr');
 		},
+		html: function (titleText)
+		{
+			return new Html(titleText);
+		},
 		i: function (text)
 		{
 			var element = new Element('i');
@@ -1086,9 +1211,14 @@ var jinjupHtmlControls = (function ()
 		{
 			return new Element('keygen');
 		},
-		label: function ()
+		label: function (text)
 		{
-			return new Element('label');
+			var element = new Element('label');
+			if (text)
+			{
+				element.textContent = text;
+			}
+			return element;
 		},
 		legend: function ()
 		{
