@@ -197,13 +197,37 @@ var jinjupHtmlControls = (function ()
 
 		return elements;
 	}
-
 	Element.prototype.appendChild = function (child)
 	{
 		if (child instanceof TextNode
 		|| child instanceof Element)
 		{
 			this.childNodes.push(child);
+		}
+	}
+	Element.prototype.insertBefore = function (newNode, existingNode)
+	{
+		if (newNode instanceof TextNode
+		|| newNode instanceof Element)
+		{
+			var length = this.childNodes.length;
+			if (length && existingNode)
+			{
+				var child;
+				for (var index = 0; index < length; ++index)
+				{
+					child = this.childNodes[index];
+					if (Object.is(child, existingNode))
+					{
+						this.childNodes.splice(index, 0, newNode);
+						break;
+					}
+				}
+			}
+			else
+			{
+				this.childNodes.push(newNode);
+			}
 		}
 	}
 	Element.prototype.removeChild = function (child)
@@ -484,7 +508,14 @@ var jinjupHtmlControls = (function ()
 	function Script(type, src)
 	{
 		Element.call(this, 'script');
-		this.attributes = { type: type, src: src };
+		if (type)
+		{
+			this.attributes.type = type;
+		}
+		if (src)
+		{
+			this.attributes.src = src;
+		}
 	}
 	Script.prototype = new tempElement();
 	Script.prototype.constructor = Script;
