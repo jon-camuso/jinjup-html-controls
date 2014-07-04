@@ -5,18 +5,18 @@ Copyright (c) 2013-2014 Jon Camuso <jcamuso@exechos.com>
 MIT Licensed
 */
 
-
+//start it all off with a "class" that is the library
 var jinjupHtmlControls = (function ()
 {
-
+	//foundation of everything that is to come. This method allows for the definition of nodes within a document
 	function Node(nodeType)
 	{
 		this.nodeType = nodeType;
 	};
+
 	var tempNode = function () { };
 	tempNode.prototype = Node.prototype;
-
-
+	//this method allows nodes to not only exist and have a type, but have a value
 	function TextNode(text)
 	{
 		Node.call(this, 'text');
@@ -46,7 +46,7 @@ var jinjupHtmlControls = (function ()
 			return this.nodeValue;
 		}
 	});
-
+	//while this is uses the keyword element, it seems much more like a class with properties
 	function Element(tagName)
 	{
 		this.tagName = tagName;
@@ -97,7 +97,7 @@ var jinjupHtmlControls = (function ()
 	{
 		if (!this.attributes)
 		{
-			this.attributes = {};
+			this.attributes = {};//why do we need this
 		}
 		this.attributes[name] = value;
 	}
