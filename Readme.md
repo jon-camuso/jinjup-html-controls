@@ -52,7 +52,7 @@ Subclass these to create your own custom implementations.
 
 	Anchor(href, text)
 
-	Input(type, name, value, disabled, readonly)
+	Input(type, name, value, disabled, readonly, placeholder)
 
 ```
 
