@@ -1189,7 +1189,7 @@ var jinjupHtmlControls = (function ()
 			return new InputRange(name, value, disabled, readonly, placeholder);
 		},
 
-		reset: function (name, value, disabled, readonly), placeholder
+		reset: function (name, value, disabled, readonly, placeholder)
 		{
 			return new InputReset(name, value, disabled, readonly, placeholder);
 		},
