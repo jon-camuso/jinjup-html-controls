@@ -5,18 +5,18 @@ Copyright (c) 2013-2014 Jon Camuso <jcamuso@exechos.com>
 MIT Licensed
 */
 
-//start it all off with a "class" that is the library
+
 var jinjupHtmlControls = (function ()
 {
-	//foundation of everything that is to come. This method allows for the definition of nodes within a document
+
 	function Node(nodeType)
 	{
 		this.nodeType = nodeType;
 	};
-
 	var tempNode = function () { };
 	tempNode.prototype = Node.prototype;
-	//this method allows nodes to not only exist and have a type, but have a value
+
+
 	function TextNode(text)
 	{
 		Node.call(this, 'text');
@@ -46,7 +46,7 @@ var jinjupHtmlControls = (function ()
 			return this.nodeValue;
 		}
 	});
-	//while this is uses the keyword element, it seems much more like a class with properties
+
 	function Element(tagName)
 	{
 		this.tagName = tagName;
@@ -97,7 +97,7 @@ var jinjupHtmlControls = (function ()
 	{
 		if (!this.attributes)
 		{
-			this.attributes = {};//why do we need this
+			this.attributes = {};
 		}
 		this.attributes[name] = value;
 	}
@@ -551,7 +551,7 @@ var jinjupHtmlControls = (function ()
 	Anchor.prototype = new tempElement();
 	Anchor.prototype.constructor = Anchor;
 
-	function Input(type, name, value, disabled, readonly)
+	function Input(type, name, value, disabled, readonly, placeholder)
 	{
 		Element.call(this, 'input');
 		if (typeof type === 'string')
@@ -573,6 +573,10 @@ var jinjupHtmlControls = (function ()
 		if (typeof readonly === 'string')
 		{
 			this.attributes.readonly = readonly;
+		}
+		if (typeof placeholder === 'string')
+		{
+			this.attributes.placeholder = placeholder;
 		}
 	}
 	Input.prototype = new tempElement();
@@ -714,9 +718,9 @@ var jinjupHtmlControls = (function ()
 	InputTel.prototype = new tempInput();
 	InputTel.prototype.constructor = InputTel;
 
-	function InputText(name, value, disabled, readonly)
+	function InputText(name, value, disabled, readonly, placeholder)
 	{
-		Input.call(this, 'text', name, value, disabled, readonly);
+		Input.call(this, 'text', name, value, disabled, readonly, placeholder);
 	}
 	InputText.prototype = new tempInput();
 	InputText.prototype.constructor = InputText;
@@ -1105,124 +1109,124 @@ var jinjupHtmlControls = (function ()
 			return new Image(src, alt);
 		},
 
-		input: function (type, name, value, disabled, readonly)
+		input: function (type, name, value, disabled, readonly, placeholder)
 		{
-			return new Input(type, name, value, disabled, readonly);
+			return new Input(type, name, value, disabled, readonly, placeholder);
 		},
 
-		button: function (name, value, disabled, readonly)
+		button: function (name, value, disabled, readonly, placeholder)
 		{
-			return new InputButton(name, value, disabled, readonly);
+			return new InputButton(name, value, disabled, readonly, placeholder);
 		},
 
-		checkbox: function (name, value, disabled, readonly)
+		checkbox: function (name, value, disabled, readonly, placeholder)
 		{
-			return new InputCheckbox(name, value, disabled, readonly);
+			return new InputCheckbox(name, value, disabled, readonly, placeholder);
 		},
 
-		color: function (name, value, disabled, readonly)
+		color: function (name, value, disabled, readonly, placeholder)
 		{
-			return new InputColor(name, value, disabled, readonly);
+			return new InputColor(name, value, disabled, readonly, placeholder);
 		},
 
-		date: function (name, value, disabled, readonly)
+		date: function (name, value, disabled, readonly, placeholder)
 		{
-			return new InputDate(name, value, disabled, readonly);
+			return new InputDate(name, value, disabled, readonly, placeholder);
 		},
 
-		datetime: function (name, value, disabled, readonly)
+		datetime: function (name, value, disabled, readonly, placeholder)
 		{
-			return new InputDatetime(name, value, disabled, readonly);
+			return new InputDatetime(name, value, disabled, readonly, placeholder);
 		},
 
-		datetimeLocal: function (name, value, disabled, readonly)
+		datetimeLocal: function (name, value, disabled, readonly, placeholder)
 		{
-			return new InputDatetimeLocal(name, value, disabled, readonly);
+			return new InputDatetimeLocal(name, value, disabled, readonly, placeholder);
 		},
 
-		email: function (name, value, disabled, readonly)
+		email: function (name, value, disabled, readonly, placeholder)
 		{
-			return new InputEmail(name, value, disabled, readonly);
+			return new InputEmail(name, value, disabled, readonly, placeholder);
 		},
 
-		file: function (name, value, disabled, readonly)
+		file: function (name, value, disabled, readonly, placeholder)
 		{
-			return new InputFile(name, value, disabled, readonly);
+			return new InputFile(name, value, disabled, readonly, placeholder);
 		},
 
-		hidden: function (name, value, disabled, readonly)
+		hidden: function (name, value, disabled, readonly, placeholder)
 		{
-			return new InputHidden(name, value, disabled, readonly);
+			return new InputHidden(name, value, disabled, readonly, placeholder);
 		},
 
-		image: function (name, value, disabled, readonly)
+		image: function (name, value, disabled, readonly, placeholder)
 		{
-			return new InputImage(name, value, disabled, readonly);
+			return new InputImage(name, value, disabled, readonly, placeholder);
 		},
 
-		month: function (name, value, disabled, readonly)
+		month: function (name, value, disabled, readonly, placeholder)
 		{
-			return new InputMonth(name, value, disabled, readonly);
+			return new InputMonth(name, value, disabled, readonly, placeholder);
 		},
 
-		number: function (name, value, disabled, readonly)
+		number: function (name, value, disabled, readonly, placeholder)
 		{
-			return new InputNumber(name, value, disabled, readonly);
+			return new InputNumber(name, value, disabled, readonly, placeholder);
 		},
 
-		password: function (name, value, disabled, readonly)
+		password: function (name, value, disabled, readonly, placeholder)
 		{
-			return new InputPassword(name, value, disabled, readonly);
+			return new InputPassword(name, value, disabled, readonly, placeholder);
 		},
 
-		radio: function (name, value, disabled, readonly)
+		radio: function (name, value, disabled, readonly, placeholder)
 		{
-			return new InputRadio(name, value, disabled, readonly);
+			return new InputRadio(name, value, disabled, readonly, placeholder);
 		},
 
-		range: function (name, value, disabled, readonly)
+		range: function (name, value, disabled, readonly, placeholder)
 		{
-			return new InputRange(name, value, disabled, readonly);
+			return new InputRange(name, value, disabled, readonly, placeholder);
 		},
 
-		reset: function (name, value, disabled, readonly)
+		reset: function (name, value, disabled, readonly), placeholder
 		{
-			return new InputReset(name, value, disabled, readonly);
+			return new InputReset(name, value, disabled, readonly, placeholder);
 		},
 
-		search: function (name, value, disabled, readonly)
+		search: function (name, value, disabled, readonly, placeholder)
 		{
-			return new InputSearch(name, value, disabled, readonly);
+			return new InputSearch(name, value, disabled, readonly, placeholder);
 		},
 
-		submit: function (name, value, disabled, readonly)
+		submit: function (name, value, disabled, readonly, placeholder)
 		{
-			return new InputSubmit(name, value, disabled, readonly);
+			return new InputSubmit(name, value, disabled, readonly, placeholder);
 		},
 
-		tel: function (name, value, disabled, readonly)
+		tel: function (name, value, disabled, readonly, placeholder)
 		{
-			return new InputTel(name, value, disabled, readonly);
+			return new InputTel(name, value, disabled, readonly, placeholder);
 		},
 
-		text: function (name, value, disabled, readonly)
+		text: function (name, value, disabled, readonly, placeholder)
 		{
-			return new InputText(name, value, disabled, readonly);
+			return new InputText(name, value, disabled, readonly, placeholder);
 		},
 
-		time: function (name, value, disabled, readonly)
+		time: function (name, value, disabled, readonly, placeholder)
 		{
-			return new InputTime(name, value, disabled, readonly);
+			return new InputTime(name, value, disabled, readonly, placeholder);
 		},
 
-		url: function (name, value, disabled, readonly)
+		url: function (name, value, disabled, readonly, placeholder)
 		{
-			return new InputUrl(name, value, disabled, readonly);
+			return new InputUrl(name, value, disabled, readonly, placeholder);
 		},
 
-		week: function (name, value, disabled, readonly)
+		week: function (name, value, disabled, readonly, placeholder)
 		{
-			return new InputWeek(name, value, disabled, readonly);
+			return new InputWeek(name, value, disabled, readonly, placeholder);
 		},
 
 		ins: function (text)
