@@ -99,6 +99,10 @@ var jinjupHtmlControls = (function ()
 		{
 			this.attributes = {};
 		}
+		if (!value)
+		{
+			value = null;
+		}
 		this.attributes[name] = value;
 	}
 	Element.prototype.removeAttribute = function (name)
@@ -333,7 +337,11 @@ var jinjupHtmlControls = (function ()
 			{
 				for (name in this.attributes)
 				{
-					html += ' ' + name + '="' + this.attributes[name] + '"';
+					html += ' ' + name;
+					if (this.attributes[name])
+					{
+						html += '="' + this.attributes[name] + '"';
+					}
 				}
 			}
 
