@@ -1,7 +1,7 @@
 {
   "name": "jinjup-html-controls",
   "description": "Module of constructors for programatic creation of HTML5 document, fragment and element objects that are easily convertible to HTML and JSON.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": {
     "name": "Jon Camuso",
     "email": "jcamuso@exechos.com"
@@ -13,7 +13,7 @@
     }
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No test specified\" && exit 1"
   },
   "keywords": [
     "jinjup",
