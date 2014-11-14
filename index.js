@@ -673,46 +673,48 @@ var jinjupHtmlControls = (function () {
         create: function (json) {
             var result = null;
             var jsonObject = null;
-            if (typeof json === 'string') {
-                json = JSON.parse(json);
-            }
-            if (typeof json === 'object') {
-                if (json.nodeType === 'element') {
-                    if (json.tagName === 'html') {
-                        result = this.html('');
-                        result.childNodes = [];
-                    }
-                    else if (json.tagName === 'head') {
-                        result = this.head();
-                        result.childNodes = [];
-                    }
-                    else if (json.tagName === 'title') {
-                        result = this.title();
-                    }
-                    else {
-                        result = this.createElement(json.tagName);
-                    }
-                    if ('attributes' in json) {
-                        for (var name in json.attributes) {
-                            result.setAttribute(name, json.attributes[name]);
+            if(json){
+                if (typeof json === 'string') {
+                    json = JSON.parse(json);
+                }
+                if (typeof json === 'object') {
+                    if (json.nodeType === 'element') {
+                        if (json.tagName === 'html') {
+                            result = this.html('');
+                            result.childNodes = [];
+                        }
+                        else if (json.tagName === 'head') {
+                            result = this.head();
+                            result.childNodes = [];
+                        }
+                        else if (json.tagName === 'title') {
+                            result = this.title();
+                        }
+                        else {
+                            result = this.createElement(json.tagName);
+                        }
+                        if ('attributes' in json) {
+                            for (var name in json.attributes) {
+                                result.setAttribute(name, json.attributes[name]);
+                            }
+                        }
+                        var length = json.childNodes.length;
+                        for (var index = 0; index < length; ++index) {
+                            var child = this.create(json.childNodes[index]);
+                            result.appendChild(child);
                         }
                     }
-                    var length = json.childNodes.length;
-                    for (var index = 0; index < length; ++index) {
-                        var child = this.create(json.childNodes[index]);
-                        result.appendChild(child);
+                    if (json.nodeType === "text") {
+                        result = this.createTextNode(json.nodeValue);
                     }
-                }
-                if (json.nodeType === "text") {
-                    result = this.createTextNode(json.nodeValue);
-                }
-                else if ('html' in json) {
-                    var jsonDeclaration = null;
-                    if ('declaration' in json) {
-                        jsonDeclaration = json.declaration;
+                    else if ('html' in json) {
+                        var jsonDeclaration = null;
+                        if ('declaration' in json) {
+                            jsonDeclaration = json.declaration;
+                        }
+                        result = this.document('', jsonDeclaration);
+                        result.html = this.create(json.html);
                     }
-                    result = this.document('', jsonDeclaration);
-                    result.html = this.create(json.html);
                 }
             }
             return result;
